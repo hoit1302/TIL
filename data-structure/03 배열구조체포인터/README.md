@@ -78,7 +78,9 @@ typedef struct person {
     float height;
 };
 struct person a;
+```
 
+```c
 typedef struct _person {
     char name[10];
     int age;
