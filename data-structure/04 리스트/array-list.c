@@ -6,14 +6,14 @@ void error(const char* string) {
 	printf(string);
 }
 
-// ¹è¿­·Î ±¸ÇöµÈ ¸®½ºÆ®
+// ë°°ì—´ë¡œ êµ¬í˜„ëœ ë¦¬ìŠ¤íŠ¸
 typedef int element;
 typedef struct {
-	element list[MAX_LIST_SIZE]; // ¹è¿­ Á¤ÀÇ
-	int length; // ÇöÀç ¹è¿­¿¡ ÀúÀåµÈ ¿ø¼ÒµéÀÇ °³¼ö, "³¡ ¿ø¼Ò À§Ä¡ + 1"
+	element list[MAX_LIST_SIZE]; // ë°°ì—´ ì •ì˜
+	int length; // í˜„ì¬ ë°°ì—´ì— ì €ì¥ëœ ì›ì†Œë“¤ì˜ ê°œìˆ˜, "ë ì›ì†Œ ìœ„ì¹˜ + 1"
 } ArrayListType;
 
-// ¸®½ºÆ® ÃÊ±âÈ­
+// ë¦¬ìŠ¤íŠ¸ ì´ˆê¸°í™”
 void init(ArrayListType* L) {
 	L->length = 0;
 }
@@ -24,19 +24,15 @@ int is_full(ArrayListType* L) {
 	return (L->length == MAX_LIST_SIZE);
 }
 void add_last(ArrayListType* L, element item) {
-	if (is_full(L))
-		error("¸®½ºÆ® LÀÌ ²Ë Â÷ ÀÖÀ¸¹Ç·Î »ğÀÔ ºÒ°¡´É");
-	 else {
-		L->list[L->length] = item;
-		L->length++;
-	}
+	if (is_full(L))	error("ë¦¬ìŠ¤íŠ¸ Lì´ ê½‰ ì°¨ ìˆìœ¼ë¯€ë¡œ ì‚½ì… ë¶ˆê°€ëŠ¥");
+	 else 		L->list[L->length++] = item;
 }
-// ¿øÇÏ´Â À§Ä¡¿¡ ³Ö´Â´Ù±âº¸´Ù Ã³À½ Áß°£¿¡ »ğÀÔ or ¸¶Áö¸·¿¡ Ãß°¡
+// ì›í•˜ëŠ” ìœ„ì¹˜ì— ë„£ëŠ”ë‹¤ê¸°ë³´ë‹¤ ì²˜ìŒ ì¤‘ê°„ì— ì‚½ì… or ë§ˆì§€ë§‰ì— ì¶”ê°€
 void add(ArrayListType* L, int position, element item) {
 	if (is_full(L))
-		error("¸®½ºÆ® LÀÌ ²Ë Â÷ ÀÖÀ¸¹Ç·Î »ğÀÔ ºÒ°¡´É");
+		error("ë¦¬ìŠ¤íŠ¸ Lì´ ê½‰ ì°¨ ìˆìœ¼ë¯€ë¡œ ì‚½ì… ë¶ˆê°€ëŠ¥");
 	else if (position < 0 || L->length < position)
-		error("Á¢±Ù °¡´ÉÇÑ À§Ä¡°¡ ¾Æ´Ï¹Ç·Î »ğÀÔ ºÒ°¡´É");
+		error("ì ‘ê·¼ ê°€ëŠ¥í•œ ìœ„ì¹˜ê°€ ì•„ë‹ˆë¯€ë¡œ ì‚½ì… ë¶ˆê°€ëŠ¥");
 	else {
 		for (int i = (L->length - 1); i >= position; i--)
 			L->list[i + 1] = L->list[i];
@@ -44,13 +40,13 @@ void add(ArrayListType* L, int position, element item) {
 		L->length++;
 	}
 }
-// °ªÀ» Á÷Á¢ »èÁ¦ÇÏÁø ¾ÊÀ½. ³¡À» °¡¸®Å°´Â Æ÷ÀÎÅÍ¸¦ º¯È­½ÃÅ³ »Ó.
-// ¹İÈ¯°ª: »èÁ¦µÇ´Â ÀÚ·á
+// ê°’ì„ ì§ì ‘ ì‚­ì œí•˜ì§„ ì•ŠìŒ. ë°°ì—´ì˜ ê¸¸ì´ë¥¼ ì¤„ì¼ ë¿.
+// ë°˜í™˜ê°’: ì‚­ì œë˜ëŠ” ìë£Œ
 element delete_last(ArrayListType* L) {
 	element item;
 
 	if (is_empty(L))
-		error("¸®½ºÆ® LÀÌ ºñ¾îÀÖÀ¸¹Ç·Î Á¦°Å ºÒ°¡´É");
+		error("ë¦¬ìŠ¤íŠ¸ Lì´ ë¹„ì–´ìˆìœ¼ë¯€ë¡œ ì œê±° ë¶ˆê°€ëŠ¥");
 	 else {
 		item = L->list[L->length - 1];
 		L->length--;
@@ -59,16 +55,15 @@ element delete_last(ArrayListType* L) {
 }
 
 element delete(ArrayListType* L, int position) {
-	int i;
 	element item;
 
 	if (is_empty(L))
-		error("¸®½ºÆ® LÀÌ ºñ¾îÀÖÀ¸¹Ç·Î Á¦°Å ºÒ°¡´É");
+		error("ë¦¬ìŠ¤íŠ¸ Lì´ ë¹„ì–´ìˆìœ¼ë¯€ë¡œ ì œê±° ë¶ˆê°€ëŠ¥");
 	else if (position < 0 || L->length <= position)
-		error("À§Ä¡ ¿À·ù");
+		error("ìœ„ì¹˜ ì˜¤ë¥˜");
 	else {
 		item = L->list[position];
-		for (i = position; i < (L->length - 1); i++)
+		for (int i = position; i < (L->length - 1); i++)
 			L->list[i] = L->list[i + 1];
 		L->length--;
 		return item;
