@@ -14,13 +14,16 @@
 - 구현
 
   - 배열 이용한 스택
-  - 연결 스택
+  - 연결 리스트를 이용한 스택
 
     ![stack1](https://user-images.githubusercontent.com/68107000/95433045-6afc7980-098a-11eb-9aa1-161420e5bf54.png)
 
-  
 
+  - 환형(원형) 연결 리스트 스택
 
+    (단, stack_ptr은 가장 먼저 삽입된 노드를 가리킴)
+
+    ![파일_001](https://user-images.githubusercontent.com/68107000/95737733-20993680-0cc3-11eb-824f-cc9f46035a36.png)
 
 <br>
 
