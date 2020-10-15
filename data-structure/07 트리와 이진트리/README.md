@@ -32,7 +32,7 @@
 >
 > 각 노드는 최대 2개의 자식 노드가 존재함(왼쪽 자식노드, 오른쪽 자식노드)
 
-- 이진트리는 **<u>순서화 트리</u>**임. 즉 **왼쪽, 오른쪽 부분트리가 구분됨**
+- 이진트리는 ***순서화 트리***임. 즉 **왼쪽, 오른쪽 부분트리가 구분됨**
 
 
 
@@ -44,29 +44,23 @@
 
   - 노드의 개수가 𝑛개이면 에지(간선)의 개수는 𝑛-1	(트리의 모양이나 𝑛 값에 상관없이 항상)
   - 높이가 ℎ인 이진트리의 노드 개수 𝑛:
-
-  $$
-  ℎ+1 <= 𝑛  <= 2^{h+1}-1
-  $$
+  	ℎ+1 <= 𝑛  <= 2^{h+1}-1
 
   - 𝑛개의 노드를 갖는 이진트리의 높이 ℎ:
+  	⌈log_2(n+1)-1⌉ (=⌊log_2n⌋) <= h <= n-1
 
-  $$
-  ⌈log_2(n+1)-1⌉ (=⌊log_2n⌋) <= h <= n-1
-  $$
 
 - 분류
 
-  ![image-20201012103014273](C:\Users\Jueun\AppData\Roaming\Typora\typora-user-images\image-20201012103014273.png)
+  ![1](https://user-images.githubusercontent.com/68107000/96094034-ce952280-0f07-11eb-98ee-3eaab7a6ab6d.png)
 
   - 포화 이진트리(full binary tree)
 
     트리의 각 레벨마다 노드들이 **꽉 차있는** 이진트리를 의미함
 
-    전체 노드 개수(높이가 h일 때) 
-    $$
-    2^{h+1}-1
-    $$
+    전체 노드 개수(높이가 h일 때) **2^{h+1}-1**
+    
+    
 
   - 완전 이진트리(complete binary tree)
 
@@ -86,7 +80,7 @@
 
 모든 이진트리를 **포화 이진트리라고 가정**하고, 각 노드에 레벨순위로 번호를 붙여서 그 번호를 배열의 인덱스로 삼아 노드의 데이터를 배열에 저장하는 방법
 
-![image-20201012124134801](C:\Users\Jueun\AppData\Roaming\Typora\typora-user-images\image-20201012124134801.png)
+![2](https://user-images.githubusercontent.com/68107000/96094036-cf2db900-0f07-11eb-8a6b-fcdac5438b32.png)
 
 - (내용 추가!)
 
@@ -103,7 +97,7 @@
 
 노드는 구조체로 표현하고 링크는 포인터로 표현한다.
 
-![image-20201012123925473](C:\Users\Jueun\AppData\Roaming\Typora\typora-user-images\image-20201012123925473.png)
+![3](https://user-images.githubusercontent.com/68107000/96094037-cfc64f80-0f07-11eb-92e9-88f8448df4f1.png)
 
 ```c
 typedef struct TreeNode {
@@ -183,7 +177,7 @@ if x≠NULL
 
 큐 사용
 
-![image-20201012103953767](C:\Users\Jueun\AppData\Roaming\Typora\typora-user-images\image-20201012103953767.png)
+![4](https://user-images.githubusercontent.com/68107000/96094038-cfc64f80-0f07-11eb-95fb-fbef0e840a54.png)
 
 ```c
 Void level_order(TreeNode *ptr) {
@@ -255,9 +249,9 @@ int get_height(TreeNode* node) {
 > - 내부노드: 연산자(operator)
 > - 단말노드(리프): 피연산자(operand)
 
-![image-20201012104931070](C:\Users\Jueun\AppData\Roaming\Typora\typora-user-images\image-20201012104931070.png)
+![5](https://user-images.githubusercontent.com/68107000/96094040-d05ee600-0f07-11eb-9af3-592f8090fe87.png)
 
-![image-20201012104821425](C:\Users\Jueun\AppData\Roaming\Typora\typora-user-images\image-20201012104821425.png)
+![6](https://user-images.githubusercontent.com/68107000/96094041-d05ee600-0f07-11eb-97ab-059be26ec4f7.png)
 
 ### 계산
 
@@ -265,7 +259,7 @@ int get_height(TreeNode* node) {
 
 부분트리의 값을 재귀 호출로 계산
 
-![image-20201012124352722](C:\Users\Jueun\AppData\Roaming\Typora\typora-user-images\image-20201012124352722.png)
+![7](https://user-images.githubusercontent.com/68107000/96094043-d0f77c80-0f07-11eb-8e7a-e2087c65308a.png)
 
 ```pseudocode
 // 알고리즘: 내부노드를 방문할 때 양쪽 부분트리의 값을 이용하여 해당 노드에 저장된 연산자를 이용하여 계산한다.
@@ -287,7 +281,7 @@ if exp = NULL
 
 **이진탐색 트리(Binary search tree, BST)**
 
-![image-20201012131747396](C:\Users\Jueun\AppData\Roaming\Typora\typora-user-images\image-20201012131747396.png)
+![8](https://user-images.githubusercontent.com/68107000/96094021-cc32c880-0f07-11eb-9210-e851491701f3.png)
 
 ```
 "탐색(검색) 작업을 효율적으로 하기 위한 트리 자료구조"
@@ -361,19 +355,19 @@ insert_node(T, key) //트리 T에 key 삽입
 
 - 3가지 경우
 
-  ![image-20201014193142811](C:\Users\Jueun\AppData\Roaming\Typora\typora-user-images\image-20201014193142811.png)
+  ![9](https://user-images.githubusercontent.com/68107000/96094024-cd63f580-0f07-11eb-80b3-94d80cbd6ab1.png)
 
   1. 삭제하려는 노드가 **단말 노드**일 경우
 
      - 단말노드의 부모노드를 찾아서 연결을 끊으면 된다. 
 
-     ![image-20201014193222786](C:\Users\Jueun\AppData\Roaming\Typora\typora-user-images\image-20201014193222786.png)
+     ![10](https://user-images.githubusercontent.com/68107000/96094027-cd63f580-0f07-11eb-8e9d-01ae357f6529.png)
 
   2. 삭제하려는 노드가 하나의 왼쪽 또는 오른쪽 **부분트리** 중 **하나**만 가지고 있는 경우
 
      - 해당 노드는 삭제하고 그 노드의 부분트리는 부모 노드에 붙여준다.
 
-     ![image-20201014193236514](C:\Users\Jueun\AppData\Roaming\Typora\typora-user-images\image-20201014193236514.png)
+     ![11](https://user-images.githubusercontent.com/68107000/96094031-cdfc8c00-0f07-11eb-9cc7-0947fa976253.png)
 
   3. 삭제하려는 노드가 두 개의 부분트리 모두 가지고 있는 경우
 
@@ -381,7 +375,7 @@ insert_node(T, key) //트리 T에 key 삽입
 
 - Inorder successor값은 어디에 있을까?
 
-![image-20201014194202404](C:\Users\Jueun\AppData\Roaming\Typora\typora-user-images\image-20201014194202404.png)
+![12](https://user-images.githubusercontent.com/68107000/96094032-ce952280-0f07-11eb-9fbe-f76154b023ba.png)
 
 ------
 
