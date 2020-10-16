@@ -12,7 +12,11 @@
 
 ## 상속(inheritance)
 
-class Student(자식클래스) **extends** People(부모클래스)
+```java
+class Student-자식클래스 extends People-부모클래스 {
+    // 내용
+}
+```
 
 클래스 재사용과 확장을 통한 소프트웨어 생산성 향상
 
@@ -20,7 +24,12 @@ class Student(자식클래스) **extends** People(부모클래스)
 
 자식 객체를 생성할 때 부모클래스의 생성자를 호출하여 먼저 실행되고 자식 생성자가 실행됨
 
-명시적으로 부모 클래스의 생성자 호출하는 경우 super(), super(param1, param2)
+명시적으로 부모 클래스의 생성자 호출하는 경우
+
+```java
+super();
+super(param1, param2);
+```
 
 
 
@@ -30,5 +39,11 @@ class Student(자식클래스) **extends** People(부모클래스)
 
 방법: 부모 메소드와 동일한 시그니처를 가지고 접근 제한을 더 강하게(좁은 범위로) X
 
-부모 클래스 메소드를 호출해야 하는 경우 **super**
+부모 클래스 메소드를 호출해야 하는 경우
+
+```java
+super.showInfo();
+```
+
+
 
