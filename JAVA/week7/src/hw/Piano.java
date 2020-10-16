@@ -7,9 +7,9 @@ public class Piano extends JFrame {
 	
 	Piano() {
 		setTitle("Piano");
-		setSize(1000, 300);
+		setSize(900, 300);
 		setLayout(new GridLayout());
-		String notes = "µµ·¹¹ÌÆÄ¼Ö¶ó½Ã";
+		String notes = "ÂµÂµÂ·Â¹Â¹ÃŒÃ†Ã„Â¼Ã–Â¶Ã³Â½Ãƒ";
 		for (int i = 0 ; i < 16; i++)
 			add(new JButton(Character.toString(notes.charAt(i%7))));
 		
