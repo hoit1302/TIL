@@ -8,23 +8,23 @@ typedef struct {
 	int coef[MAX_DEGREE];
 } polynomial;
 
-// C = A+B, ¿©±â¼­ A¿Í B´Â ´ÙÇ×½ÄÀÌ´Ù.
+// C = A+B, ì—¬ê¸°ì„œ Aì™€ BëŠ” ë‹¤í•­ì‹ì´ë‹¤.
 polynomial poly_add1(polynomial A, polynomial B) {
 	polynomial C;
-	int Apos = 0, Bpos = 0, Cpos = 0; // ¹è¿­ ÀÎµ¦½º º¯¼ö
+	int Apos = 0, Bpos = 0, Cpos = 0; // ë°°ì—´ ì¸ë±ìŠ¤ ë³€ìˆ˜
 	int degree_a = A.degree;
 	int degree_b = B.degree;
-	C.degree = MAX(A.degree, B.degree); // °á°ú ´ÙÇ×½Ä Â÷¼ö
+	C.degree = MAX(A.degree, B.degree); // ê²°ê³¼ ë‹¤í•­ì‹ ì°¨ìˆ˜
 	while (Apos <= A.degree && Bpos <= B.degree) {
-		if (degree_a > degree_b) { // AÇ× > BÇ×
+		if (degree_a > degree_b) { // Aí•­ > Bí•­
 			C.coef[Cpos++] = A.coef[Apos++];
 			degree_a--;
 		}
-		else if (degree_a == degree_b) { // AÇ× == BÇ×
+		else if (degree_a == degree_b) { // Aí•­ == Bí•­
 			C.coef[Cpos++] = A.coef[Apos++] + B.coef[Bpos++];
 			degree_a--; degree_b--;
 		}
-		else { // BÇ× > AÇ×
+		else { // Bí•­ > Aí•­
 			C.coef[Cpos++] = B.coef[Bpos++];
 			degree_b--;
 		}
@@ -34,9 +34,9 @@ polynomial poly_add1(polynomial A, polynomial B) {
 
 
 void main() {
-	polynomial a = { 5, {3, 6, 0, 0, 0, 10} };
-	polynomial b = { 4, {7, 0, 5, 0, 1} };
+	polynomial a = { 5, {3, 6, 0, 0, 0, 10} };  // a(x) = 3x^5 + 6x^4 + 10
+	polynomial b = { 4, {7, 0, 5, 0, 1} };      // b(x) = 7x^4 + 5x^2 + 1
 	polynomial c;
-	c = poly_add1(a, b);
+	c = poly_add1(a, b);                        // c = {5, {3, 13, 0, 5, 0, 11} }
 	return;
 }
