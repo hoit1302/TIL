@@ -26,7 +26,7 @@
 
 - **재귀** : 재귀 호출 이용
   - 재귀적인 문제에서는 자연스러운 방법
-  - 함수 호출의 **오버헤드(overhead-부가적인 연산 및 기억 공간)**가 있음
+  - 함수 호출의 **오버헤드(overhead-부가적인 연산 및 기억 공간)** 가 있음
 - **반복** : for문이나 while문, repeat문 등을 이용
   - 수행 속도가 빠름
   - 문제 자체가 재귀적인 경우는 프로그램 작성이 어려울 수도 있음
@@ -84,9 +84,9 @@ binary_search(key, low, high)
         if( key == list[middle] ) return middle;
         else if (key < list[middle] )
             return binary_search(key, low, middle-1);
-        else return binary_search(key, middle+1, high)
+        else return binary_search(key, middle+1, high);
     }
-    else return-1
+    else return -1;
 ```
 
 - **시간복잡도** 
@@ -113,6 +113,8 @@ int fib(int n) {
 ```
 
 - **시간복잡도** ![image](https://user-images.githubusercontent.com/68107000/96528190-019b3580-12bd-11eb-9bed-8615ab455c1b.png) (기본 연산: 정수 덧셈)
+	![image](https://user-images.githubusercontent.com/68107000/96539748-c443a180-12d6-11eb-8db3-000940d5d744.png)
+
 - **공간복잡도** ![image](https://user-images.githubusercontent.com/68107000/96527610-75d4d980-12bb-11eb-9748-8c1bdc4c995b.png)
   - 재귀 호출을 사용했을 경우의 비효율성
   - ![image](https://user-images.githubusercontent.com/68107000/96527647-956c0200-12bb-11eb-9e16-05dae51d70ee.png)
@@ -137,6 +139,8 @@ fib_iter(int n) {
 ```
 
 - **시간복잡도**![image](https://user-images.githubusercontent.com/68107000/96527203-8e90bf80-12ba-11eb-8269-5ae59deb83cb.png)(기본 연산: 정수 덧셈)
+
+
 - **공간복잡도** ![image](https://user-images.githubusercontent.com/68107000/96527216-96e8fa80-12ba-11eb-88f9-3864ded79f21.png) (n, i, fn, fn1, fn2)
 
 
@@ -147,7 +151,7 @@ fib_iter(int n) {
 
 재귀 함수를 이용한 하노이 타워 의사코드
 
-```pseudocode
+```C
 // 말뚝 from에 쌓여있는 n개의 원판을 말뚝 aux를 사용하여 말뚝 to로 옮긴다.
 void hanoi_tower(int n, char from, char aux, char to) {
     if (n==1) 
