@@ -1,14 +1,17 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #define MAX_TERMS 101
+
+// í•˜ë‚˜ì˜ ë°°ì—´ë¡œ ì—¬ëŸ¬ ê°œì˜ ë‹¤í•­ì‹ì„ ë‚˜íƒ€ë‚¼ ìˆ˜ ìˆìŒ.
+// A = 8x^3 + 7x + 1, B = 10x^3 + 3x^2 + 1
 struct {
 	float coef;
 	int exp;
 } terms[MAX_TERMS] = { {8,3}, {7,1}, {1,0}, {10,3}, {3,2}, {1,0} };
 
-int avail = 6;
+int avail = 6;   // ì‚½ì…í• (ë¹„ì–´ìˆëŠ”) index ê°€ë¦¬í‚´.
 
-// µÎ °³ÀÇ Á¤¼ö¸¦ ºñ±³
+// ë‘ ê°œì˜ ì •ìˆ˜ë¥¼ ë¹„êµ
 char compare(int a, int b)
 {
 	if (a > b) return '>';
@@ -16,11 +19,10 @@ char compare(int a, int b)
 	else return '<';
 }
 
-// »õ·Î¿î Ç×À» ´ÙÇ×½Ä¿¡ Ãß°¡
-void attach(float coef, int exp)
-{
+// ìƒˆë¡œìš´ í•­ì„ ë‹¤í•­ì‹ì— ì¶”ê°€
+void attach(float coef, int exp){
 	if (avail > MAX_TERMS) {
-		fprintf(stderr, "Ç×ÀÇ °³¼ö°¡ ³Ê¹« ¸¹À½\n");
+		fprintf(stderr, "í•­ì˜ ê°œìˆ˜ê°€ ë„ˆë¬´ ë§ìŒ\n");
 		exit(1);
 	}
 	terms[avail].coef = coef;
@@ -33,22 +35,22 @@ poly_add2(int As, int Ae, int Bs, int Be, int* Cs, int* Ce) {
 	*Cs = avail;
 	while (As <= Ae && Bs <= Be)
 		switch (compare(terms[As].exp, terms[Bs].exp)) {
-		case '>': // AÀÇ Â÷¼ö > BÀÇ Â÷¼ö
+		case '>': // Aì˜ ì°¨ìˆ˜ > Bì˜ ì°¨ìˆ˜
 			attach(terms[As].coef, terms[As].exp);
 			As++; break;
-		case '=': // AÀÇ Â÷¼ö == BÀÇ Â÷¼ö
+		case '=': // Aì˜ ì°¨ìˆ˜ == Bì˜ ì°¨ìˆ˜
 			tempcoef = terms[As].coef + terms[Bs].coef;
 			if (tempcoef)
 				attach(tempcoef, terms[As].exp);
 			As++; Bs++; break;
-		case '<': // AÀÇ Â÷¼ö < BÀÇ Â÷¼ö
+		case '<': // Aì˜ ì°¨ìˆ˜ < Bì˜ ì°¨ìˆ˜
 			attach(terms[Bs].coef, terms[Bs].exp);
 			Bs++; break;
 		}
-	// AÀÇ ³ª¸ÓÁö Ç×µéÀ» ÀÌµ¿ÇÔ
+	// Aì˜ ë‚˜ë¨¸ì§€ í•­ë“¤ì„ ì´ë™í•¨
 	for (; As <= Ae; As++)
 		attach(terms[As].coef, terms[As].exp);
-	// BÀÇ ³ª¸ÓÁö Ç×µéÀ» ÀÌµ¿ÇÔ
+	// Bì˜ ë‚˜ë¨¸ì§€ í•­ë“¤ì„ ì´ë™í•¨
 	for (; Bs <= Be; Bs++)
 		attach(terms[Bs].coef, terms[Bs].exp);
 	*Ce = avail - 1;
