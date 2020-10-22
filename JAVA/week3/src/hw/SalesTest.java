@@ -6,7 +6,7 @@ public class SalesTest {
 		// TODO Auto-generated method stub
 		Sales s1=new Sales();
 		Sales s2=new Sales();
-		System.out.println("ÆÇ¸ÅµÈ °³¼ö:"+Sales.getSale());
+		System.out.println("íŒë§¤ëœ ê°œìˆ˜:"+Sales.getSale());
 	}
 
 }
