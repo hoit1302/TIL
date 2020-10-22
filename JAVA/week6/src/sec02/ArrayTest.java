@@ -17,7 +17,8 @@ public class ArrayTest {
 		printArray(arr);
 		
 		Arrays.sort(arr);		printArray(arr);
-		System.out.println(Arrays.binarySearch(arr, 40)); // 반드시 sort된 배열에.
-		Arrays.fill(arr, 100);	printArray(arr);
+		 // 반드시 sort된 배열을 사용
+		System.out.println(Arrays.binarySearch(arr, 40));
+		Arrays.fill(arr, 100);		printArray(arr);
 	}
 }
