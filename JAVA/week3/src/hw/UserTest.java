@@ -22,7 +22,7 @@ public class UserTest {
 			case 2:
 				for (int i=0;i<User.cnt; i++)
 						System.out.println("{ " + list[i].id + ", " + list[i].pw + " }");
-				System.out.println("ÃÑ È¸¿ø¼ö´Â "+User.cnt+"¸í ÀÔ´Ï´Ù.");
+				System.out.println("ì´ íšŒì›ìˆ˜ëŠ” "+User.cnt+"ëª… ìž…ë‹ˆë‹¤.");
 				break;
 			case 3:
 				System.out.println("Exit");
