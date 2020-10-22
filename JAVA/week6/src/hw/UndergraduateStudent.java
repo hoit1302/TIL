@@ -8,9 +8,9 @@ public class UndergraduateStudent extends Student {
 
 	@Override
 	public void computeGrade() {
-		grade = "°ϊ¶τ";
+		grade = "κ³Όλ½";
 		if (score >= 70)
-			grade = "Ελ°ϊ";
+			grade = "ν†µκ³Ό";
 	}
 
 }
