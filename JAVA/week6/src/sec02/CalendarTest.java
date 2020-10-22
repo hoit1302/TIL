@@ -11,7 +11,7 @@ public class CalendarTest {
 		Calendar c = Calendar.getInstance();
 		
 		year = c.get(Calendar.YEAR);
-		month = c.get(Calendar.MONTH) + 1;	// 1월을 0으로 표현
+		month = c.get(Calendar.MONTH) + 1;	// 1월을 0으로 표현함
 		date = c.get(Calendar.DATE);
 		
 		System.out.println(year+"년");
