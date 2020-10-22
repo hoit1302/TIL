@@ -18,7 +18,7 @@ public class Manager extends Employee {
 	@Override
 	public String showInfo() {
 		String result = super.showInfo();
-		result += "\nº¸³Ê½º:" + bonus;
+		result += "\në³´ë„ˆìŠ¤:" + bonus;
 		return result;
 	}
 }
