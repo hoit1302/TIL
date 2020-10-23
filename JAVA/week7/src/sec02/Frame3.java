@@ -10,10 +10,10 @@ public class Frame3 extends JFrame {
 		setSize(300, 150);
 		setLayout(new GridLayout(2, 2));
 
-		add(new JButton("Áö¼ö"));
-		add(new JButton("Á¦´Ï"));
-		add(new JButton("·ÎÁ¦"));
-		add(new JButton("¸®»ç"));
+		add(new JButton("ì œë‹ˆ"));
+		add(new JButton("ë¡œì œ"));
+		add(new JButton("ë¦¬ì‚¬"));
+		add(new JButton("ì§€ìˆ˜"));
 
 		setVisible(true);
 	}
