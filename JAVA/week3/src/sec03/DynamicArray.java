@@ -5,9 +5,9 @@ import java.util.*;
 public class DynamicArray {
 	public static void main(String[] args) {
 		List<Song> songs = new ArrayList<Song>();
-		songs.add(new Song("¹æÅº", "Zero 0'clock"));
-		songs.add(new Song("Æ®¿ÍÀÌ½º", "more and more"));
-		songs.add(new Song("Ã»ÇÏ", "play"));
+		songs.add(new Song("ë°©íƒ„ì†Œë…„ë‹¨", "Zero 0'clock"));
+		songs.add(new Song("íŠ¸ì™€ì´ìŠ¤", "more and more"));
+		songs.add(new Song("ì²­í•˜", "play"));
 		
 		for (Song s: songs)
 			System.out.println(s);
