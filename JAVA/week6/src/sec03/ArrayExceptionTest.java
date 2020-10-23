@@ -9,7 +9,7 @@ public class ArrayExceptionTest {
 			for (int i = 0; i <= arr.length; i++)
 				arr[i] = 100;
 		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("¹è¿­ÀÇ ¹üÀ§¸¦ ÃÊ°úÇÔ");
+			System.out.println("ë°°ì—´ì˜ ë²”ìœ„ë¥¼ ì´ˆê³¼í•¨");
 			e.printStackTrace();
 		}
 	}

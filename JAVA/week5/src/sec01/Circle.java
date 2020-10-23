@@ -28,10 +28,10 @@ public class Circle extends Shape {
 
 	@Override
 	void showInfo() {
-		System.out.println("ÀÌ¸§:" + name);
-		System.out.println("¹İÁö¸§:" + getRadius());
-		System.out.println("¸éÀû:" + getArea());
-		System.out.println("µÑ·¹:" + getPerimeter());
+		System.out.println("ì´ë¦„:" + name);
+		System.out.println("ë°˜ì§€ë¦„:" + getRadius());
+		System.out.println("ë©´ì :" + getArea());
+		System.out.println("ë‘˜ë ˆ:" + getPerimeter());
 	}
 
 }
