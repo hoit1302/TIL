@@ -69,6 +69,10 @@ interface RemoteControl2 {	}
 public class Television implements RemoteControl1, RemoteControl2 {
    	// 구현
 }
+
+interface control extends RemoteControl1, RemoteControl2{
+    
+}
 ```
 
 - **다중 상속**이 가능 !
