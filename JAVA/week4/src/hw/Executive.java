@@ -22,7 +22,7 @@ public class Executive extends Manager {
 	@Override
 	public String showInfo() {
 		String result = super.showInfo();
-		result += "\n½ºÅå¿É¼Ç:" + stockOption;
+		result += "\nìŠ¤í†¡ì˜µì…˜:" + stockOption;
 		return result;
 	}
 }
