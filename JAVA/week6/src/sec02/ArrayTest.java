@@ -17,7 +17,7 @@ public class ArrayTest {
 		printArray(arr);
 		
 		Arrays.sort(arr);		printArray(arr);
-		 // ¹İµå½Ã sortµÈ ¹è¿­À» »ç¿ë
+		// ë°˜ë“œì‹œ sortëœ ë°°ì—´ì„ ì‚¬ìš©
 		System.out.println(Arrays.binarySearch(arr, 40));
 		Arrays.fill(arr, 100);		printArray(arr);
 	}
