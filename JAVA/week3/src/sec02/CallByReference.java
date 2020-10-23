@@ -13,7 +13,7 @@ public class CallByReference {
 		Circle c = new Circle(10);
 		System.out.println(c.r);
 		
-		add(c); // °´Ã¼Àü´Ş
+		add(c); // ê°ì²´ì „ë‹¬
 		System.out.println(c.r);
 	}
 
