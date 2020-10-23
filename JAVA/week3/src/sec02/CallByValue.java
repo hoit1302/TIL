@@ -5,7 +5,7 @@ public class CallByValue{
 		int x = 10;
 		System.out.println(x); // 10
 		add(x);
-		System.out.println(x); // 10 11¾Æ´Ô
+		System.out.println(x); // 10 11ì•„ë‹˜
 	}
 	static void add(int x) {
 		x++;
