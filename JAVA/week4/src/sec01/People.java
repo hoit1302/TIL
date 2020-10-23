@@ -1,10 +1,10 @@
 package sec01;
 
 public class People {
-	String name; // ÀÌ¸§
-	String ssn; // ÁÖ¹Î¹øÈ£
+	String name; // ì´ë¦„
+	String ssn; // ì£¼ë¯¼ë²ˆí˜¸
 	
-	// »ı¼ºÀÚ
+	// Â»Ã½Â¼ÂºÃ€Ãš
 	People (String name, String ssn){
 		this.name = name;
 		this.ssn = ssn;
