@@ -12,7 +12,7 @@
 
 ### vi의 모드
 
-![image-20201012165005702](C:\Users\Jueun\AppData\Roaming\Typora\typora-user-images\image-20201012165005702.png)
+![image](https://user-images.githubusercontent.com/68107000/97177897-240be200-17da-11eb-89b2-350eb6f4c513.png)
 
 ### vi 시작
 

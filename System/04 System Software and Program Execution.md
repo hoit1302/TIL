@@ -6,10 +6,10 @@
 
 ## program execution과 관련한 System Software
 
-- 컴파일러(compiler)
-- 어셈블러(assembler)
-- 링커(linker)
-- 로더(loader)
+- **컴파일러**
+- **어셈블러**
+- **링커**
+- **로더**
 
 +) 상용 컴파일러 소프트웨어(**gcc, visual c**)가 <u>컴파일러, 어셈블러, 링커 등을 내포</u>하고 있어 소스파일에서 실행 파일 변환이 **한 번에** 이루어짐 ( = make한다)
 
@@ -27,8 +27,8 @@
 
   어셈블리 언어나 기계어로 변환시켜주는 소프트웨어 필요
 
-  - compiler (C)
-  - interpreter (Java)
+  - compiler (C, Java): 런타임 이전에 한번에 기계어(Java의 경우 byte code로)로 변환
+  - interpreter (Java, Python): 런타임 중에 프로그램 한줄한줄을 해석하며 실행한다.
 
   ```c
   temp = v[k];
@@ -101,7 +101,7 @@
 
 - separate compile: ㅡ> object file (.o or .obj)
 
-  변수, 함수의 위치 불명확, type만 파악
+  변수, 함수의 위치 불명확, **type만 파악**
 
   - > **one.o**
     >
@@ -134,6 +134,8 @@
 
   변수, 함수의 위치 명확
 
+  컴파일된 C  프로그램이 정상적으로 link되어 실행파일이 생성되기 위해서는 프로그램에서 사용하는 모든 symbol의 위치가 다 알려져야 한다.
+  
   - > **one.o**
     >
     > Symbol Table
@@ -242,9 +244,10 @@
 #include <stdio.h>
 ```
 
-헤더 파일에는 라이브러리 함수의 선언만 있음
-
-함수의 argument 및 return type을 알려줌
+- 헤더 파일에는... 라이브러리 함수의 선언만 있음
+  - 함수의 argument type과 return type이 표시된다.
+  - 함수에 대한 정보가 extern 형대로 표시된다.
+  - 함수의 정의, 위치는 포함되지 않는다.
 
 *<u>**실제 함수의 정의는 라이브러리 파일에 있음**</u>*
 
@@ -260,14 +263,13 @@
 
 - **Static Library**
   - *.o
-  - link time동안 함수들이 .out or .exe에 복사된다
+  - link time동안 함수들이 .out or .exe에 **복사**된다
   - binding(= Linking): compile time(넓은 의미의 컴파일)
 - 라이브러리가 프로그램의 실행 파일 코드에 <u>포함</u>됨 **(static library)**
-
 - 실행 <u>파일의 크기가 커짐</u>
-
 - 동일한 라이브러리를 각각의 프로세스가 메모리에 올리므로 <u>메모리 낭비</u> 
   (예: printf 함수의 라이브러리 코드)
+- 컴파일 및 수행 속도가 shared library에 비해 빠르다.
 
 <br>
 
@@ -279,7 +281,9 @@
   - 실행할 때 공유 라이브러리를 요구하고 로딩된다.
   - binding(= Linking): loading or run time
   - 장점
-    - less memory space
+    - 컴파일 속도가 빠르다.
+    - 실행파일의 크기가 작다.
+    - 메모리 공간을 적게 차지한다.
   - 단점
     - 실행파일(?)을 줘도 library가 있는지, 같은 버전인지 신경 써야함
     - 조금 느림

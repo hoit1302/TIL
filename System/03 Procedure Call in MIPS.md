@@ -1,4 +1,4 @@
-Procedure Call in MIPS
+## Procedure Call in MIPS
 
 ![03-1](https://user-images.githubusercontent.com/68107000/95711338-8377d700-0c9d-11eb-9ba1-c38aee885136.PNG)
 
@@ -19,6 +19,8 @@ PC는 program counter로, 현재 실행되고 있는 코드를 가리킨다.
 <br>
 
 ## Stack
+
+- **Last In First Out**
 
 - **$sp** (stack pointer): top-가장 최근 저장 위치를 가리킴
 
@@ -43,6 +45,8 @@ PC는 program counter로, 현재 실행되고 있는 코드를 가리킨다.
 MIPS Procedure Call
 
 ![03-2](https://user-images.githubusercontent.com/68107000/95711339-84106d80-0c9d-11eb-8be4-2b1009336fa5.PNG)
+
+함수의 호출에 사용되는 instruction: jal
 
 jal(jump and link): return address를 $ra에 저장 후 jump(PC가 바뀜)
 
@@ -86,10 +90,9 @@ jal(jump and link): return address를 $ra에 저장 후 jump(PC가 바뀜)
 
   MIPS의 경우
 
-  - **Callee-save register** - 여기부터 이어서!
-    
+  - **Callee-save register**
     - ***Saved $s0~$s7***
-- Frame pointer $fp
+    - Frame pointer $fp
   
   - **Caller-save register**
   
@@ -106,4 +109,29 @@ jal(jump and link): return address를 $ra에 저장 후 jump(PC가 바뀜)
     - Return address $ra
   
       (나도 어딘가로 돌아가야지!)
+
+## Procedure Call Actions
+
+- **Caller**
+  - caller-save register들 중 사용 중인 것을 stack에 저장
+    - $a0~$a3, $t0~$t9, $v0~$v1, $ra
+  - 전달할 argument의 set up
+    - 앞의 4개는 $a0~$a3에, 나머지는 stack에 저장
+  - jal instruction을 이용해서 callee 호출
+    - return address는 $ra에 자동 저장됨
+- **Callee**
+  - frame 크기를 계산하여 stack에 그 크기만큼의 공간 할당
+    - $sp ← $sp – frame size
+  - callee-save register 중 사용할 레지스터를 스택에 저장
+    - $s0~$s7
+    - $fp: 현 stack frame의 frame pointer를 가리켜야 하므로 save
+  - $fp값을 현재 stack frame의 시작 위치로 설정
+
+- **callee returns**
+  - return value가 있는 경우 $v0~$v1에 그 값을 저장
+  - 저장했던 callee-save register 값을 복원
+    - $s0~$s7, $fp
+  - stack에서 이 procedure의 frame을 비움
+    - $sp ← $sp + frame size
+  - jump $ra를 이용하여 return
 

@@ -37,6 +37,9 @@
   stdout은 모니터
 
   ```
+  argument가 주어지지 않는 경우, 키보드에서 input을 받거나 결과를 화면에 출력함.
+  argument가 주어지는 경우, 파일 이름에서 input을 받는다.
+  
   $ cat > test		// 표준 입력(stdin, KBD) 생략. 표준 입력을 test파일에 저장.
     hi!
     I hope that you get this file.
