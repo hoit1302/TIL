@@ -1,7 +1,5 @@
 # 그래프 - part1
 
-<도입>
-
 Seven Bridges of Königsberg (지금은 러시아 칼리닌그라드)
 
 - 한 붓 그리기: 모든 다리를 한번만 건너서 처음 출발했던 장소로 돌아오는 문제
@@ -9,18 +7,16 @@ Seven Bridges of Königsberg (지금은 러시아 칼리닌그라드)
 - 오일러 사이클(Eulerian cycle)
   - 모든 정점에 연결된 에지의 수가 짝수이면 오일러 사이클이 존재한다.
 
-## 그래프
+## 그래프 정의
 
 **연결**되어 있는 **객체 간의 관계**를 표현하는 자료구조이다.
 
 가장 일반적인 자료구조의 형태이다. 트리(tree), 이진트리도 그래프의 특수한 경우로 볼 수 있다.
 
-![image-20201103181909709](C:\Users\Jueun\AppData\Roaming\Typora\typora-user-images\image-20201103181909709.png)
-
-### 정의
+![image](https://user-images.githubusercontent.com/68107000/97969359-49fd3c00-1e03-11eb-8dda-2261a3eeace5.png)
 
 - **그래프 G**는 (V, E)로 표시
-  - 그래프는 **정점(vertex)**과 **에지(edge, 간선)**들의 집합으로 구성되어 있다.
+  - 그래프는 **정점(vertex)**와 **에지(edge, 간선)**들의 집합으로 구성되어 있다.
   - 즉, 정점 집합과 에지 집합의 **순서쌍**
 - **정점(vertex)**
   - 여러 가지 특성을 가질 수 있는 객체 의미
@@ -36,9 +32,7 @@ Seven Bridges of Königsberg (지금은 러시아 칼리닌그라드)
   - |E| = m
   - 간선 또는 링크(link)라고도 불림
 
-
-
-### 예시
+## 예시
 
 - 전기회로의 소자 간 연결 상태
 - 운영체제의 프로세스와 자원 관계
@@ -49,11 +43,9 @@ Seven Bridges of Königsberg (지금은 러시아 칼리닌그라드)
 - 영역 간 인접관계
 - 나눔의 관계 (나머지가 0인 관계)
 
+## 종류
 
-
-### 종류
-
-#### 무향 그래프(undirected graph)
+### 무향 그래프(undirected graph)
 
 무향 에지를 사용한다. 이는 무방향/양방향을 의미한다.
 
@@ -61,7 +53,7 @@ Seven Bridges of Königsberg (지금은 러시아 칼리닌그라드)
 
 **(A, B) = (B, A)**
 
-#### 방향 그래프(directed graph, digraph) 또는 유향 그래프
+### 방향 그래프(directed graph, digraph) 또는 유향 그래프
 
 방향 에지를 사용한다. 즉 에지를 통해서 한쪽 방향으로만 갈 수 있다는 것을 의미한다.
 
@@ -71,7 +63,7 @@ Seven Bridges of Königsberg (지금은 러시아 칼리닌그라드)
 
 - 특별한 언급이 없으면, 그래프는 자가 루프(self-loop)와 중복 에지(multiple edge)가 없는 단순 그래프(simple graph) 를 의미한다.
 
-#### 가중치 그래프(weighted graph)
+### 가중치 그래프(weighted graph)
 
 **에지에 비용(cost)**과 같은 가중치(weight)가 할당된 그래프
 
@@ -79,9 +71,7 @@ Seven Bridges of Königsberg (지금은 러시아 칼리닌그라드)
 
 예) 정점=동시, 에지=도로를 연결하는 도로, 가중치=거리 또는 통행료
 
-
-
-### 부분 그래프(subgraph)
+## 부분 그래프(subgraph)
 
 ![image](https://user-images.githubusercontent.com/68107000/97967612-cd695e00-1e00-11eb-8605-e4116ccc4cf4.png)
 
@@ -90,15 +80,11 @@ Seven Bridges of Königsberg (지금은 러시아 칼리닌그라드)
 - Spanning subgraph: G의 정점을 모두 가지고 있을 경우
 - Spanning Tree: G의 정점을 모두 가지고 있고 연결은 다 되어 있으나 cycle이 아닌 경우
 
-
-
-### 인접 정점(adjacent vertex)
+## 인접 정점(adjacent vertex)
 
 어떤 정점에서 에지에 의해 직접 연결된 정점
 
-
-
-### 차수(degree)
+## 차수(degree)
 
 - **무향** 그래프의 차수
   - 하나의 정점에 연결된 다른 정점의 수
@@ -110,9 +96,7 @@ Seven Bridges of Königsberg (지금은 러시아 칼리닌그라드)
   - 방향 그래프의 모든 진입(또는 진출) 차수의 합은 에지의 수와 같다.
   - ![image](https://user-images.githubusercontent.com/68107000/97966670-7d3dcc00-1dff-11eb-9842-06f63b8385bd.png)
 
-
-
-### 경로(path)
+## 경로(path)
 
 - **무향** 그래프의 정점 s로부터 정점 t까지의 경로
   - 정점의 나열 s, v1 , v2 , ..., vk , t
@@ -120,9 +104,9 @@ Seven Bridges of Königsberg (지금은 러시아 칼리닌그라드)
 - **방향** 그래프의 정점 s로부터 정점 t까지의 방향(유향) 경로
   - 정점의 나열 s, v1 , v2 , ..., vk , t
   - 나열된 정점들 간에 반드시 방향 에지 , , … ,< vk , t>가 존재
-- 경로의 길이(length): 경로를 구성하는 에지의 수
+- **경로의 길이(length)**: 경로를 구성하는 에지의 수
 - **단순 경로**: 경로 중에서 **반복**되는 정점 및 에지가 **없는** 경로
-- 사이클(cycle): 단순 경로의 시작 정점과 끝 정점이 동일한 경로
+- **사이클(cycle)**: 단순 경로의 시작 정점과 끝 정점이 동일한 경로
 
 ```
 예시
@@ -131,9 +115,7 @@ G1의 1, 0, 2, 3은 단순경로이지만 1, 0, 2, 0은 단순경로가 아님
 G1의 0, 1, 2, 0과 G3의 0, 1, 0은 사이클
 ```
 
-
-
-### 연결성(connectivity)
+## 연결성(connectivity)
 
 - **비연결 그래프(disconnected graph)**
 - **연결 그래프(connected graph)**
@@ -157,15 +139,13 @@ G2는 비연결 그래프
 G2에서 정점 3이 없다면 트리
 ```
 
+## 그래프 표현 방법
 
-
-### 그래프 표현 방법
-
-#### 인접 행렬(adjacent matrix)
+### 인접 행렬(adjacent matrix)
 
 - ```c
   if (그래프에 에지 (i, j)가 존재) A[i][j] = 1;
-  else 						  A[i][j] = 0;
+  else                          A[i][j] = 0;
   ```
 
 - 인접 행렬의 대각선 성분은 모두 0이다. (자가 루프가 없는 단순 그래프)
@@ -186,7 +166,7 @@ G2에서 정점 3이 없다면 트리
     weight(<i,j>) 값은 Wij 이렇게 표현한다.
     
     if (그래프에 에지 <i, j>가 존재)  A[i][j] = Wij;
-    else if (i==j) 				   A[i][j] = 0;
+    else if (i==j)                 A[i][j] = 0;
     else (에지 <i,j>가 존재하지 않음) A[i][j] = ∞;
     ```
 
@@ -197,4 +177,4 @@ G2에서 정점 3이 없다면 트리
 - 공간 복잡도: O(n^2)
   - 희소 그래프인 경우, 매우 비효율적이다. 행렬 원소 대부분이 ∞이거나 0이기 때문이다.
 
-#### 인접 리스트(adjacency list)
+### 인접 리스트(adjacency list)
