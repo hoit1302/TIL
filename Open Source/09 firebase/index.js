@@ -77,10 +77,14 @@ async function main() {
       startRsvpButton.textContent = "LOGOUT";
       guestbookContainer.style.display = "block"; // Show guestbook to logged-in users
       subscribeGuestbook();
+      // Subscribe to the guestbook collection
+      subscribeCurrentRSVP(user);
     } else {
       startRsvpButton.textContent = "RSVP";
       guestbookContainer.style.display = "none"; // Hide guestbook for non-logged-in users
       unsubscribeGuestbook();
+      // Unsubscribe from the guestbook collection
+      unsubscribeCurrentRSVP();
     }
   });
 
@@ -205,28 +209,7 @@ async function main() {
     rsvpNo.className = "";
   }
 
-  // Listen to the current Auth state
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      startRsvpButton.textContent = "LOGOUT";
-      // Show guestbook to logged-in users
-      guestbookContainer.style.display = "block";
 
-      // Subscribe to the guestbook collection
-      subscribeGuestbook();
-      // Subscribe to the guestbook collection
-      subscribeCurrentRSVP(user);
-    } else {
-      startRsvpButton.textContent = "RSVP";
-      // Hide guestbook for non-logged-in users
-      guestbookContainer.style.display = "none";
-
-      // Unsubscribe from the guestbook collection
-      unsubscribeGuestbook();
-      // Unsubscribe from the guestbook collection
-      unsubscribeCurrentRSVP();
-    }
-  });
 }
 
 main();
