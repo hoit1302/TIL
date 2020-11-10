@@ -174,7 +174,169 @@ G2에서 정점 3이 없다면 트리
 
   - ![image](https://user-images.githubusercontent.com/68107000/97968325-d73f9100-1e01-11eb-814a-37d3ebe1d4ca.png)
 
-- 공간 복잡도: O(n^2)
+- **공간 복잡도: O(n^2)**
+  
   - 희소 그래프인 경우, 매우 비효율적이다. 행렬 원소 대부분이 ∞이거나 0이기 때문이다.
 
 ### 인접 리스트(adjacency list)
+
+- 각 정점에 인접한 정점들을 **연결 리스트**로 표현
+
+- n개의 연결 리스트로 구성
+
+- 각 연결 리스트마다 포인터 변수가 리스트의 처음 노드를 가리킴
+
+- 연결 리스트가 없으면 즉, 차수가 0이면 포인터 변수값은 null
+
+- 예시
+
+  - ![image](https://user-images.githubusercontent.com/68107000/98393410-92835680-209c-11eb-993b-1f8b62d6a71d.png)
+
+- 정점의 개수가 n, 에지의 개수가 m일 때,
+
+  - 무향그래프 : n개의 포인터 변수 + 2m개의 일반 노드
+  - 방향그래프 : n개의 포인터 변수 + m개의 일반 노드
+
+-  자료 구조
+
+  ```c
+  typedef struct GraphNode{
+      int vertex;	// index
+      struct GraphNode *link;
+  } GraphNode;
+  typedef struct GraphType {
+      int n; // 정점의 개수
+      GraphNode* adj_list[MAX_VERTICES]; // head pointer의 배열
+  } GraphType;
+  ```
+
+- 효율성: 정점의 개수와 에지의 개수에 의존
+
+  - 에지 개수를 구하는 알고리즘 : **O(n+m)**
+  - m = n(n-1)/2 인 경우(완전 그래프-모든 정점이 서로 인접되어 있는 그래프, worst case): **O(n^2)**
+
+
+
+# 그래프 탐색(Graph search) 또는 운행(traversal)
+
+- 그래프의 **가장 기본적인 연산** 중 하나이다.
+- 하나의 정점으로부터 시작하여 차례대로 모든 정점들을 한번씩 방문하는 것을 말한다.
+- 그래프 관련 많은 문제들은 그래프의 노드들을 **체계적으로 탐색**하는 것으로 해결 가능하다.
+- 특**정한 정점에서 특정 정점까지 갈 수 있는지 없는지를 탐색** 
+  - (예 1) 도로망에서 특정 도시로부터 다른 도시로 갈 수 있는지 여부
+  - (예 2) 전자회로에서 특정 단자와 다른 단자가 서로 연결되어 있는지 여부
+
+## 깊이우선 탐색(DFS)
+
+깊이우선 탐색 (DFS : depth-first search)
+
+- 일단 임의의 한쪽 방향으로 갈 수 있을 때까지 가다가 더 이상 갈 수 없게 되면 가장 가까운 갈림 길로 돌아와서 그곳으로부터 다른 방향으로 다시 탐색을 진행한다.
+
+- 갈림길로 돌아가기 위해서는 **스택**이 필요한데, **재귀 함수 호출**로 묵시적인 스택을 이용하여 구현할 수 있다.
+
+  - 예로 미로 찾기가 있다.
+
+- 알고리즘은 이러하다.
+
+  ``` C
+  depth_first_search(v)
+      v를 방문;  v가 방문되었다고 표시(mark);
+      for all u ∈ (v에 인접한 정점들) do
+      	if (u가 아직 방문되지 않았으면) 
+              then depth_first_search(u)
+  ```
+
+- 공간 효율성 ㅡ 차수 높은 거 따라가는 거 기억하죠?
+
+  - 인접리스트 :  **O(n+m)** (그래프 O(n+m), visited[] O(n), 스택 O(n) )
+  - 인접행렬 : **O(n^2)** (그래프 O(n^2), visited[] O(n), 스택 O(n) )
+
+## 너비우선 탐색(BFS)
+
+너비우선 탐색(BFS : breadth-first search)
+
+- **시작 정점으로부터 거리가 가까운 정점들을 먼저** 차례로 방문하고 멀리 떨어져 있는 정점을 나중에 방문하는 운행 방법이다.
+
+- **큐**를 사용하여 구현할 수 있다.
+
+- 알고리즘은 이러하다.
+
+  ```c
+  breadth_first_search(v)
+      
+  	v를 방문;  v가 방문되었다고 표시(mark);	 v를 큐 Q에 삽입;
+      while (not is_empty(Q)) do
+          큐 Q에서 삭제(dequeue)한 정점을 w;
+          for all u ∈ (w에 인접한 정점들) do
+              if (u가 아직 방문되지 않았으면) 
+                  then u를 방문;  u가 방문되었다고 표시(mark);  u를 큐 Q에 삽입;
+  ```
+
+- 공간 효율성 
+
+  - **인접리스트** : **O(n+m)** (그래프 O(n+m), visited[] O(n), 큐 O(n) )
+  - **인접행렬** : **O(n^2)** (그래프 O(n^2), visited[] O(n), 큐 O(n) )
+
+## 연결 성분(Connected component)
+
+최대로 연결된 부분 그래프(Maximal connected subgraph) 
+
+![image](https://user-images.githubusercontent.com/68107000/98486965-b644c900-2263-11eb-872e-f92c21cfbe35.png)
+
+- 연결 성분의 개수를 세는 프로그램
+
+  - DFS 또는 BFS를 반복 이용
+
+  - 탐색 프로그램의 visited[v] = TRUE;를 visited[v] = count;로 교체
+
+  - ```C
+    void find_connected_component(GraphType *g) {
+        int i;
+        count = 0;
+        for (i=0; i<g->n; i++)
+            if (!visited[i]) { // 아직 방문되지 않은 경우
+                count++;
+                dfs_mat(g, i);
+        }
+    }
+    ```
+
+
+
+## 강연결 방향그래프(strongly connected digraph)와 강연결 성분(strongly connected component 또는 strong component)
+
+예시
+
+![image](https://user-images.githubusercontent.com/68107000/98487318-9b735400-2265-11eb-846c-4ae97eb121f0.png)
+
+강연결 방향그래프가 아니고
+
+강연결 성분 2개로 구성되어 있다.
+
+## 이중연결 그래프(biconnected graph)와 이중연결 성분(biconnected component 또는 bicomponent)
+
+**이중연결 그래프(biconnected graph)**
+
+- 절점이 없는 연결 그래프
+- 즉 한 정점을 지웠을 때 나머지가 연결되어 있다는 뜻이다.
+- 
+
+**절점(cut vertex or articulation point)**
+
+- G=(V,E)의 정점으로서 그 정점과 연결된 에지들을 제거했을 때, 나머지 부분 그래프가 두 개 이상의 연결 성분으로 구성
+- 즉 한 정점을 지웠을 때 그래프가 분리가 된다면 그 점은 절점이다는 뜻이다.
+
+**이중연결 성분(biconnected component 혹은 bicomponent)**
+
+- G의 이중연결 부분그래프 H로서, H를 포함하는 더 큰 이중연결 부분 그래프가 없는 경우
+- 즉 **G의 최대 이중연결 부분그래프**(maximal biconnected subgraph)
+- 이중 연결 그래프는 이중 연결 성분이 1개이다.
+- 이중 연결 그래프가 아니면 이중 연결 성분이 1개 이상이다.
+
+특징
+
+-  그래프가 컴퓨터 네트워크인 경우, 절점의 불량은 통신 불량 초래
+- 두 이중연결 성분들의 **교집합**은 최대 하나의 정점 (= 절점) **(0..1)**
+- 두 이중연결 성분들의 **에지 교집합**은 공집합
+- 즉, 이중연결 성분은 **그래프의 에지 집합을 분할(partition)**
+
