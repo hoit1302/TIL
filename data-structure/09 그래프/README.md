@@ -16,7 +16,7 @@ Seven Bridges of Königsberg (지금은 러시아 칼리닌그라드)
 ![image](https://user-images.githubusercontent.com/68107000/97969359-49fd3c00-1e03-11eb-8dda-2261a3eeace5.png)
 
 - **그래프 G**는 (V, E)로 표시
-  - 그래프는 **정점(vertex)**와 **에지(edge, 간선)**들의 집합으로 구성되어 있다.
+  - 그래프는 **정점(vertex)와 에지(edge, 간선)** 들의 집합으로 구성되어 있다.
   - 즉, 정점 집합과 에지 집합의 **순서쌍**
 - **정점(vertex)**
   - 여러 가지 특성을 가질 수 있는 객체 의미
@@ -65,7 +65,7 @@ Seven Bridges of Königsberg (지금은 러시아 칼리닌그라드)
 
 ### 가중치 그래프(weighted graph)
 
-**에지에 비용(cost)**과 같은 가중치(weight)가 할당된 그래프
+**에지에 비용(cost)** 과 같은 가중치(weight)가 할당된 그래프
 
 무향 그래프 및 방향 그래프 모두에 해당
 
@@ -160,7 +160,7 @@ G2에서 정점 3이 없다면 트리
 
   - ![image](https://user-images.githubusercontent.com/68107000/97968242-bd05b300-1e01-11eb-8869-1086c24e1978.png)
 
-- 에지의 길이나 비용(cost) 고려하여 가중치를 부여하면 **가중치 그래프(weighted graph)**가 된다.
+- 에지의 길이나 비용(cost) 고려하여 가중치를 부여하면 **가중치 그래프(weighted graph)** 가 된다.
 
   - ```c
     weight(<i,j>) 값은 Wij 이렇게 표현한다.
