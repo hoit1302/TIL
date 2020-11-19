@@ -45,7 +45,7 @@
 
 **정렬된 왼쪽 리스트와 정렬 안된 오른쪽 리스트 가정**
 
-- 초기에는 왼쪽 리스트는 비어 있 고, 정렬할 숫자들은 모두 오른쪽 리스트에 존재
+- 초기에는 왼쪽 리스트는 비어 있고, 정렬할 숫자들은 모두 오른쪽 리스트에 존재
 
 **오른쪽 리스트에서 최소값 선택하여 오른쪽 리스트의 첫번째 수와 교환**
 
@@ -83,18 +83,251 @@ void selection_sort(int list[], int n) {
 **선택 정렬 복잡도 분석**
 
 - 비교 횟수
+  - (n - 1) + (n - 2) + … + 1 = n(n - 1)/2 ∈ **O(n^2)**
 - 이동 횟수
-- 전체 시간 복잡도
+  - 각 swap에 3번 : 총 **3(n - 1)**
+- **전체 시간 복잡도: O(n^2)**
 - 안정성을 만족하지 않음
   - 예) 3 3 1 5
 
 ## 삽입 정렬
 
+**설명**
+
+**정렬되어 있는 앞 부분에 새로운 레코드를 올바른 위치에 삽입하는 과정 반복**
+
+![image](https://user-images.githubusercontent.com/68107000/99598738-5d341c80-2a3d-11eb-8e09-420dbaade088.png)
+
+![image-20201119080338511](C:\Users\Jueun\AppData\Roaming\Typora\typora-user-images\image-20201119080338511.png)
+
+**pseudocode**
+
+```c
+insertion_sort(A, n)
+for i ← 1 to n-1 do
+    key ← A[i];
+    j ← i-1;
+    while j≥0 and A[j]>key do
+    	A[j+1] ← A[j];
+    	j ← j-1;
+    A[j+1] ← key
+```
+
+**C 구현**
+
+```c
+void insertion_sort(int list[], int n) {
+    int i, j, key;
+    for(i=1; i<n; i++){
+        key = list[i];
+        for(j=i-1; j>=0 && list[j]>key; j--) // 비교 횟수
+        	list[j+1] = list[j]; // 레코드의 오른쪽 이동
+        list[j+1] = key;
+    }
+}
+```
+
+**선택 정렬 복잡도 분석**
+
+- **최선의 경우 O(n)** - 이미 정렬되어 있는 경우
+  - **비교: n-1번 ㅡ> 왜냐면 두번째 for loop은 한 번만 실행되고 탈출하니까!**
+- **최악의 경우 O(n^2)**
+  - 모든 단계에서 앞에 놓인 자료 전부 이동
+  - 비교: **O(n^2)** (![image](https://user-images.githubusercontent.com/68107000/99600063-00863100-2a40-11eb-8167-1edca8f430f6.png))
+  - 이동(각 단계마다 i+2회 이동 i : 배열이동, 2 : key 복사): **O(n^2)** (![image](https://user-images.githubusercontent.com/68107000/99600084-08de6c00-2a40-11eb-81e3-2ad99c0c3737.png))
+- **평균적인 경우 O(n^2)**
+- 안정 정렬이다.
+- 많은 이동이 필요해서 레코드가 클 경우 비효율적이다.
+- 대부분 정렬되어 있으면 효율적이다.
+
 ## 버블 정렬
 
+**설명**
+
+인접한 2개의 레코드의 키를 비교하여 순서대로 되어 있지 않으면 서로 **교환**
+
+이러한 비교-교환 과정을 리스트의 왼쪽 끝에서 오른쪽 끝까지 반복(스캔)
+
+![image-20201119082209779](C:\Users\Jueun\AppData\Roaming\Typora\typora-user-images\image-20201119082209779.png)
+
+**pseudocode**
+
+```c
+BubbleSort(A, n)
+for i←n-1 to 1 do
+    for j←0 to i-1 do
+    	j와 j+1번째의 요소가 크기 순이 아니면 교환
+    	j++;
+	i--;
+```
+
+**C 구현**
+
+```c
+#define SWAP(x, y, t) ( (t)=(x), (x)=(y), (y)=(t) )
+void bubble_sort(int list[], int n) {
+    int i, j, temp;
+    for(i=n-1; i>0; i--){
+        for(j=0; j<i; j++) // 앞뒤의 레코드를 비교한 후 교환
+        	if(list[j]>list[j+1])
+        		SWAP(list[j], list[j+1], temp);
+    }
+}
+```
+
+**개선된 버블정렬 C구현**
+
+```c
+배열의 뒷부분부터 인접한 원소를 비교하여 작은 원소를 앞으로 보내는 개선된 버블 정렬 알고리즘
+#define SWAP(x, y, t) ( (t)=(x), (x)=(y), (y)=(t) )
+void improved_bubble_sort(int list[], int n) {
+    int i, j, temp, flag = TRUE;
+    j = 0;
+    while ((j<n-1) && flag) {
+        flag = FALSE;
+        for (i=n-1; i>j; i--)
+            if (list[i] < list[i-1]) {
+            	swap(list[i], list[i-1], temp);
+            flag = TRUE;
+        }
+        j++;
+    }
+} 
+```
+
+
+
+**선택 정렬 복잡도 분석**
+
+- **비교 횟수(최선, 평균, 최악의 경우 모두 일정)**
+  - **O(n^2)** (![image](https://user-images.githubusercontent.com/68107000/99600063-00863100-2a40-11eb-8167-1edca8f430f6.png)
+  - 개선된 버블정렬의 경우는 최선의 경우 O(n)
+-  **이동 횟수**
+  - 역순으로 정렬된 경우(최악의 경우) :이동 횟수 = 3 * 비교 횟수
+  - 이미 정렬된 경우(최선의 경우) : 이동 횟수 = 0 
+  - 평균의 경우 : O(n^2)
+- 레코드의 이동 과다
+  - 이동연산은 비교연산보다 더 많은 시간이 소요됨
+
+------
+
+위 3개의 정렬은 모두 worst와 평균적 모두 O(n^2)이다.
+
 ## 병합 정렬
+
+**설명**
+
+- 리스트를 두 개의 균등한 크기로 **분할**하고 분할된 부분리스트를 재귀적으로 정렬한 후, 정렬된 두 개의 부분리스트를 **병합**하여 전체 리스트를 정렬함
+- **분할 정복(divide-and-conquer) 설계방식** 
+  - 문제를 작은 2개의 부분문제로 분할하고 각 문제를 해결한 다음, 결과를 모아서 원래의 문제를 해결하는 전략
+  - 분할된 부분문제가 아직도 해결하기 어렵다면(즉, 충분히 작지 않다면) 분할정복 방법을 다시 적용(재귀호출 이용)
+
+1.분할(Divide) : 배열을 같은 크기의 2개의 부분배열로 분할 
+
+2.정복(Conquer) : 부분배열을 정렬한다. 부분배열의 크기가 충분히 작지 않으면 재귀호출을 이용하여 다시 분할정복기법 적용 
+
+3.병합(Combine) : 정렬된 두 부분배열을 하나의 배열에 통합
+
+**병합 정렬의 전체 과정**
+
+![image](https://user-images.githubusercontent.com/68107000/99602274-902dde80-2a44-11eb-802e-73a3ba7fb83a.png)
+
+**pseudocode**
+
+```c
+merge_sort(list, left, right)
+if left < right  // 정렬할 데이터의 개수가 2개 이상이면
+    mid = (left+right)/2; // 중간 위치 계산
+    merge_sort(list, left, mid); //  왼쪽 부분배열 병합 정렬 : merge_sort 함수 재귀 호출
+    merge_sort(list, mid+1, right); // 오른쪽 부분배열을 병합 정렬 : merge_sort 함수 재귀 호출
+    merge(list, left, mid, right); // 오른쪽 부분배열을 병합 정렬 : merge_sort 함수 재귀 호출
+```
+
+**병합 과정**
+
+![image](https://user-images.githubusercontent.com/68107000/99602917-ab4d1e00-2a45-11eb-8a3f-4b99bb1a1039.png)
+
+**pseudocode**
+
+```c
+merge(list, left, mid, right):
+// 2개의 인접한 배열 list[left..mid]와 list[mid+1..right]를 병합
+i←left;
+j←mid+1;
+k←left;
+while i ≤ mid and j ≤ right do
+    if(list[i]<list[j])
+    	then sorted[k]←list[i];
+    	k++; i++;
+    else
+    	sorted[k]←list[j];
+    	k++; j++;
+
+원소가 남아있는 부분배열을 sorted로 복사한다;
+sorted를 list로 복사한다;
+```
+
+**C 구현**
+
+```c
+void merge_sort(int list[], int left, int right) {
+    int mid;
+    if (left<right) {
+        mid = (left+right)/2; // 리스트의 균등분할
+        merge_sort(list, left, mid); // 부분리스트 정렬
+        merge_sort(list, mid+1, right);//부분리스트 정렬
+        merge(list, left, mid, right); // 합병
+    }
+}
+
+int sorted[MAX_SIZE]; // 추가 공간이 필요
+// i는 정렬된 왼쪽리스트에 대한 인덱스
+// j는 정렬된 오른쪽리스트에 대한 인덱스
+// k는 정렬될 리스트에 대한 인덱스
+
+void merge(int list[], int left, int mid, int right){
+    int i, j, k, l;
+    i=left; j=mid+1; k=left;
+    // 분할 정렬된 list의 합병
+    while(i<=mid && j<=right){
+        if(list[i]<=list[j])
+        	sorted[k++] = list[i++];
+        else
+            sorted[k++] = list[j++];
+    }
+    
+    // 남아 있는 레코드의 일괄 복사
+    if(i>mid) 
+    	for(l=j; l<=right; l++) 
+            sorted[k++] = list[l];
+    else
+    	for(l=i; l<=mid; l++) 
+            sorted[k++] = list[l];
+    
+    // 배열 sorted[]의 리스트를 배열 list[]로 복사
+    for(l=left; l<=right; l++) list[l] = sorted[l];
+}
+```
+
+**병합 정렬 복잡도 분석**
+
+- **비교 횟수**
+  -  크기n (= 2^k이라고 가정)인 리스트를 정확히 균등 분배한다면 lg_2(n)번의 패스
+  - 2* (n/2) + 4*(n/4)… + 2k (n/2^k ), k = log_2(n) ⇒ n+n+⋯+n, K회 더함 ⇒ **nlgn**
+- **이동 횟수** 
+  - 레코드의 이동이 각 패스에서 2n번 발생하므로 **전체 레코드의 이동은 2n*lg_2(n)번 발생** (즉, sorted로 한번, 다시 리스트로 한번 이동)
+  - 레코드의 크기가 큰 경우에는 매우 큰 시간적 낭비 초래 
+  - 레코드를 연결 리스트로 구성하여 병합 정렬할 경우, 
+    - 링크 인덱스만 변경되므로 데이터의 이동은 무시할 수 있을 정도로 작아짐
+    - 따라서 크기가 큰 레코드를 정렬할 경우, 다른 어떤 정렬 방법보다 매우 효율적 
+    - 하지만 가운데 위치를 찾는 것이 문제가 되므로 잘 사용하지 않는다.
+
+- 최선, 평균, 최악의 경우 큰 차이 없이 **O(nlgn)의 복잡도**
+- **안정적**이며 데이터의 초기 분산 순서에 영향을 덜 받음
 
 ## 퀵 정렬
 
 ## 힙 정렬
+
+
 
