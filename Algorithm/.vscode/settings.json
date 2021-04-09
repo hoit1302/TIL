@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "iostream": "cpp"
+    }
+    // "terminal.integrated.shellArgs.windows": ["/K", "chcp 65001"]
+}
